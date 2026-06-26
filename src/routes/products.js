@@ -8,10 +8,13 @@ function encodeCursor({ created_at, id }) {
 
 function decodeCursor(raw) {
   if (!raw) return null;
+
   try {
-    return JSON.parse(Buffer.from(raw, 'base64url').toString('utf8'));
+    return JSON.parse(
+      Buffer.from(raw, "base64url").toString("utf8")
+    );
   } catch {
-    return null;
+    throw new Error("Invalid cursor");
   }
 }
 
